@@ -1,6 +1,7 @@
+
 # VoiceAid – Voice-Activated Ambulance Traffic Alert System
 
-🌐 **Live Demo:** https://kkavinaya30.github.io/VoiceAid/
+🌐 **Live Demo:** [Open VoiceAid](https://kkavinaya30-design.github.io/VoiceAid/)
 
 
 
