@@ -1,0 +1,37 @@
+
+name: VoiceAid Docker Test
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  docker-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get project files
+        uses: actions/checkout@v4
+
+      - name: Check Docker Compose
+        run: docker compose config
+
+      - name: Build and start VoiceAid
+        run: docker compose up --build -d
+
+      - name: Test website
+        run: |
+          for i in {1..10}; do
+            if curl --fail http://localhost:8080/; then
+              echo "VoiceAid website is working!"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Website test failed"
+          exit 1
+
+      - name: Stop containers
+        if: always()
+        run: docker compose down
