@@ -1,0 +1,7 @@
+services:
+  voiceaid:
+    build: .
+    container_name: voiceaid-dashboard
+    ports:
+      - "8080:80"
+    restart: unless-stopped

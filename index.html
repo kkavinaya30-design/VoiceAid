@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090B10">
+  <title>VoiceAid | Ambulance Traffic Alert</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="VoiceAid dashboard">
+        <span class="brand-mark" aria-hidden="true">✚</span>
+        <span><strong>VoiceAid</strong><small>Traffic alert simulation</small></span>
+      </a>
+      <div class="prototype-label"><span class="pulse-dot"></span> SIMULATION MODE</div>
+    </header>
+
+    <main>
+      <section class="hero panel">
+        <div class="hero-copy">
+          <p class="eyebrow">EMERGENCY RESPONSE · COIMBATORE</p>
+          <h1>Clear the way,<br><span>when every minute matters.</span></h1>
+          <p class="hero-description">A voice-activated route alert simulation for connected vehicles.</p>
+        </div>
+        <div class="activation-card">
+          <div class="activation-heading">
+            <div><span class="eyebrow">VOICE CONTROL</span><h2>Ambulance alert</h2></div>
+            <span id="voiceStatus" class="status-pill status-idle" role="status">Ready</span>
+          </div>
+          <p id="voiceHint" class="voice-hint">Say “Start ambulance alert” or use the microphone.</p>
+          <button id="micButton" class="mic-button" type="button" aria-label="Start listening for ambulance alert command">
+            <span class="mic-icon" aria-hidden="true">🎙</span><span id="micButtonText">Start listening</span>
+          </button>
+          <button id="demoButton" class="text-button" type="button" hidden>Activate by typing command</button>
+        </div>
+      </section>
+
+      <section class="dashboard-grid" aria-label="Ambulance dashboard">
+        <article class="panel ambulance-panel">
+          <div class="section-heading"><div><p class="eyebrow">LIVE UNIT</p><h2>Ambulance status</h2></div><span id="unitState" class="unit-state"><i></i> STANDBY</span></div>
+          <div class="unit-identity"><div class="vehicle-icon" aria-hidden="true">＋</div><div><span class="muted-label">AMBULANCE ID</span><strong>01</strong></div></div>
+          <div class="details-grid">
+            <div><span class="muted-label">DRIVER</span><strong>Kumar</strong></div>
+            <div><span class="muted-label">CURRENT LOCATION</span><strong id="currentLocation">Gandhipuram</strong></div>
+          </div>
+          <div class="route-block">
+            <div class="route-title"><span class="muted-label">PLANNED ROUTE</span><span class="route-tag">FIXED ROUTE</span></div>
+            <ol class="route-list" id="routeList">
+              <li class="route-stop complete"><span class="route-node"></span><span>Gandhipuram</span><small>START</small></li>
+              <li class="route-stop active"><span class="route-node"></span><span>Ganapathy</span><small>UP NEXT</small></li>
+              <li class="route-stop"><span class="route-node"></span><span>Peelamedu</span></li>
+              <li class="route-stop"><span class="route-node"></span><span>Singanallur</span><small>DESTINATION</small></li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="panel approach-panel">
+          <div class="section-heading"><div><p class="eyebrow">ROUTE PROGRESS</p><h2>Next road approach</h2></div><span class="route-tag">SIMULATED</span></div>
+          <div class="approach-destination"><span class="destination-icon" aria-hidden="true">⌖</span><div><span class="muted-label">UPCOMING ROAD</span><h3 id="upcomingRoad">Ganapathy</h3></div></div>
+          <div class="eta-row"><span>Estimated time to road</span><strong id="etaValue">10:00 <small>min</small></strong></div>
+          <div class="progress-track"><div id="progressBar" class="progress-bar"></div><span class="threshold-marker" title="Alert threshold: 5 minutes"></span></div>
+          <div class="progress-labels"><span>Approach started</span><span>Arrival</span></div>
+          <div id="alertBanner" class="alert-banner" aria-live="polite"><span class="banner-icon">!</span><span id="alertBannerText">No active road warning</span></div>
+          <div class="approach-note"><span class="note-icon">◷</span><span>Warnings are sent at <strong>5 simulated minutes</strong> from the next road. Time runs at 1 simulated minute per 2 seconds.</span></div>
+        </article>
+
+        <article class="panel vehicles-panel">
+          <div class="section-heading"><div><p class="eyebrow">CONNECTED VEHICLES</p><h2>On this road</h2></div><span id="vehicleCount" class="count-badge">2 vehicles</span></div>
+          <p class="panel-subtitle">Only vehicles assigned to the upcoming road receive its warning.</p>
+          <div id="vehicleList" class="vehicle-list"></div>
+          <div id="speechNotice" class="speech-notice" role="status">Spoken warnings are ready when supported by your browser.</div>
+        </article>
+
+        <article class="panel history-panel">
+          <div class="section-heading"><div><p class="eyebrow">EVENT LOG</p><h2>Alert history</h2></div><span id="historyCount" class="history-count">0 EVENTS</span></div>
+          <div id="historyList" class="history-list" aria-live="polite"><div class="empty-history"><span>◷</span><p>Alert events will appear here once the route simulation begins.</p></div></div>
+          <p class="simulation-disclaimer">Prototype simulation only · No real GPS or public-road alerts</p>
+        </article>
+      </section>
+    </main>
+    <footer><span>VoiceAid <span class="footer-divider">·</span> Hackathon prototype</span><span>Browser-based route simulation</span></footer>
+  </div>
+</body>
+</html>
